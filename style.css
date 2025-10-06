@@ -71,3 +71,33 @@ body {
   height: 20px;
 }
 
+.conteiner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:#1a1a1a;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 25px;
+  overflow: hidden;
+  color:#ffffff;
+  font-family: 'poppins', sans-serif;
+  gap: 20px;
+
+}
+.Deadpool{
+  max-width: fit-content;
+}
+.foto{
+ width: 400px;
+ 
+
+}
+.foto img{
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0cqb;
+}
+
+
