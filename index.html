@@ -13,25 +13,58 @@
 <body>
   <header class="header">
     <div class="logo">CINE<span>HOME</span></div>
-    <div class="search-bar">
-      <input type="text" placeholder="Pesquisar filmes...">
-      <button><img src="lupinha.png" class="icon"></button>
+    <div class="header-actions">
+      <div class="search-bar">
+        <select id="search-type" aria-label="Tipo">
+          <option value="movie">Filmes</option>
+          <option value="tv">Séries</option>
+        </select>
+        <select id="search-genre" aria-label="Gênero">
+          <option value="">Gênero</option>
+        </select>
+        <input type="number" id="search-year" placeholder="Ano" min="1900" max="2100">
+      <input type="text" id="search-query" placeholder="Pesquisar títulos...">
+      <button id="search-btn"><img src="lupinha.png" class="icon"></button>
+        <!-- Input inline para TMDB API Key -->
+        <input type="text" id="tmdbKeyInline" class="api-inline-input" placeholder="TMDB API Key" autocomplete="off" title="TMDB API Key (inline)" />
+        <button id="save-api-inline-btn" class="api-inline-save" title="Salvar TMDB API Key">Salvar</button>
+      </div>
     </div>
   </header>
-  <div class="conteiner">
-    <div class="Deadpool">
-      <p>Deadpool 2</p>
-      <span> O mercenário Deadpool precisa</span><br>
-      <span> aprender o que é ser herói <br>de verdade para isso,</span><br>
-      <span> ele recruta seu velho amigo Colossus e forma um novo grupo</span><br>
-      <span> X-Force, com o apoio de Dopinder</span><br>
-      <a href="#" class="button">ASSISTA JÁ</a>
+  <!-- Capa no estilo Netflix -->
+  <section class="hero-netflix" style="background-image: url('deadpool 2.jpeg');">
+    <div class="hero-overlay"></div>
+    <div class="hero-topbar">
+      <button class="hero-chip">Mais títulos para assistir</button>
+      <button class="hero-chip">Planos</button>
     </div>
+    <!-- Botão Configurar API no lado direito da capa -->
+    <div class="hero-right-actions">
+      <button id="open-api-modal-btn" class="api-btn hero-api-btn" aria-label="Configurar TMDB API Key" title="Configurar TMDB API Key">Configurar API</button>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title" id="heroTitle">Homem-Aranha<br><span class="hero-sub">Sem Volta para Casa</span></h1>
+      <p class="hero-resumo" id="heroOverview">Peter Parker enfrenta consequências inesperadas após revelar sua identidade. Para corrigir a situação, ele busca ajuda de um velho aliado — mas tudo sai do controle.</p>
+      <div class="hero-actions" role="group" aria-label="Ações do conteúdo">
+        <button class="hero-btn play" type="button" aria-label="Assista Agora">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          Assista Agora
+        </button>
+        <button class="hero-btn info" type="button" aria-label="Detalhes do conteúdo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 9h2V7h-2v2zm0 8h2v-6h-2v6zm1-16C6.48 1 2 5.48 2 11s4.48 10 10 10 10-4.48 10-10S17.52 1 12 1z"/></svg>
+          Detalhes
+        </button>
+      </div>
 
-    <div class="foto">
-      <img src="deadpool 2.jpeg" alt="" srcset="">
+      <!-- FORMULÁRIO E EMAIL -->
+      <form class="hero-form" onsubmit="return false">
+        <input type="email" class="hero-input" placeholder="Email" aria-label="Email">
+        <button class="hero-cta" type="button">Acessar agora</button>
+      </form>
+      <p class="hero-note">Diversão ilimitada a partir de R$ 20,90</p>
+
     </div>
-  </div>
+  </section>
   <!-- PAGINA INICIAL -->
   <div class="div-nav">
     <nav class="nav-menu" >
@@ -49,7 +82,7 @@
 
 <section class="top10-section">
   <div class="section-header">
-    <h2 class="section-title">TOP 10 EM ALTA</h2>
+    <h2 class="section-title">Brasil: top 10 em filmes hoje</h2>
     <div class="section-gradient"></div>
   </div>
   
@@ -189,13 +222,6 @@
             <!-- Overlay content -->
           </div>
         </div>
-
-          <div class="filme-card top-item-10">
-          <span class="ranking-numero">10</span>
-          <div class="filme-image" style="background-image: url('img/avatar_caminho_da_agua.jpg');">
-            <!-- Overlay content -->
-          </div>
-        </div>
         
       </div>
     </div>
@@ -214,521 +240,58 @@
   </div>
 </section>
 
-<!-- Seção: Romances adolescentes para suspirar -->
-    <section class="categoria-section">
+<!-- Seção: Romances adolescentes para suspirar (dinâmica via TMDB) -->
+    <section class="categoria-section" id="romance-teen" data-tmdb-mode="discover" data-tmdb-type="movie" data-tmdb-genre="10749" data-tmdb-sort="popularity.desc" data-tmdb-language="pt-BR">
         <div class="section-header">
             <h2 class="section-title">Romances adolescentes para suspirar</h2>
             <div class="section-gradient"></div>
         </div>
-        
-        <div class="carrossel-container">
-            <button class="carrossel-btn carrossel-prev" aria-label="Voltar">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                </svg>
-            </button>
-            
-            <div class="carrossel-wrapper">
-                <div class="filmes-carrossel">
-                    <!-- Card 1 -->
-                    <div class="filme-card">
-                        <div class="novidade-badge">Novidade</div>
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=BEL+E+A+VERDADEIRA')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">Bel e a Verdadeira</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2023</span>
-                                        <span class="classificacao">12+</span>
-                                        <span class="duracao">1h 45m</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="filme-card">
-                        <div class="novidade-badge">Novidade</div>
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=MINHA+VIDA+COM+FAMÍLIA+WALTER')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">Minha Vida com Família Walter</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2023</span>
-                                        <span class="classificacao">12+</span>
-                                        <span class="duracao">1h 50m</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="filme-card">
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=AMOR+EM+VERONA')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">Amor em Verona</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2022</span>
-                                        <span class="classificacao">12+</span>
-                                        <span class="duracao">1h 38m</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="filme-card">
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=DIÁRIO+DE+UMA+PAIXÃO')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">Diário de uma Paixão</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2004</span>
-                                        <span class="classificacao">12+</span>
-                                        <span class="duracao">2h 3m</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 5 -->
-                    <div class="filme-card">
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=A+CINCO+passos+DE+TI')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">A Cinco Passos de Ti</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2019</span>
-                                        <span class="classificacao">12+</span>
-                                        <span class="duracao">1h 56m</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 6 -->
-                    <div class="filme-card">
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=PARA+TODOS+OS+GAROTOS')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">Para Todos os Garotos</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2018</span>
-                                        <span class="classificacao">12+</span>
-                                        <span class="duracao">1h 39m</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <button class="carrossel-btn carrossel-next" aria-label="Avançar">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
-                </svg>
-            </button>
-        </div>
+        <!-- Conteúdo dinâmico gerado pelo script.js com imagens do TMDB -->
     </section>
 
-    <!-- Seção: Principais buscas -->
-    <section class="categoria-section">
+    <!-- Seção: Principais buscas (dinâmica via TMDB: trending all/week) -->
+    <section class="categoria-section" id="principais-buscas" data-tmdb-mode="trending" data-tmdb-type="all">
         <div class="section-header">
             <h2 class="section-title">Principais buscas</h2>
             <div class="section-gradient"></div>
         </div>
-        
-        <div class="carrossel-container">
-            <button class="carrossel-btn carrossel-prev" aria-label="Voltar">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                </svg>
-            </button>
-            
-            <div class="carrossel-wrapper">
-                <div class="filmes-carrossel">
-                    <!-- Card 1 -->
-                    <div class="filme-card">
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=WEDNESDAY')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">Wednesday</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2022</span>
-                                        <span class="classificacao">14+</span>
-                                        <span class="temporadas">1 Temporada</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="filme-card">
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=CHLOEZITAR')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">ChloeZitar</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2023</span>
-                                        <span class="classificacao">16+</span>
-                                        <span class="temporadas">1 Temporada</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="filme-card">
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=BERÇO+DE+OURO')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">Berço de Ouro</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2023</span>
-                                        <span class="classificacao">16+</span>
-                                        <span class="temporadas">1 Temporada</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="filme-card">
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=NERO')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">Nero</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2023</span>
-                                        <span class="classificacao">16+</span>
-                                        <span class="duracao">1h 52m</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 5 -->
-                    <div class="filme-card">
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=STRANGER+THINGS')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">Stranger Things</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2016</span>
-                                        <span class="classificacao">16+</span>
-                                        <span class="temporadas">4 Temporadas</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 6 -->
-                    <div class="filme-card">
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=LA+CASA+DE+PAPEL')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">La Casa de Papel</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2017</span>
-                                        <span class="classificacao">16+</span>
-                                        <span class="temporadas">5 Temporadas</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <button class="carrossel-btn carrossel-next" aria-label="Avançar">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
-                </svg>
-            </button>
-        </div>
+        <!-- Conteúdo dinâmico gerado pelo script.js com imagens do TMDB -->
     </section>
 
-    <!-- Seção: Séries para maratonar - EUA -->
-    <section class="categoria-section">
+    <!-- Seção: Séries para maratonar - EUA (dinâmica via TMDB) -->
+    <section class="categoria-section" id="series-eua" data-tmdb-mode="discover" data-tmdb-type="tv" data-tmdb-original-language="en" data-tmdb-sort="popularity.desc" data-tmdb-language="pt-BR">
         <div class="section-header">
             <h2 class="section-title">Séries para maratonar - EUA</h2>
             <div class="section-gradient"></div>
         </div>
-        
-        <div class="carrossel-container">
-            <button class="carrossel-btn carrossel-prev" aria-label="Voltar">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                </svg>
-            </button>
-            
-            <div class="carrossel-wrapper">
-                <div class="filmes-carrossel">
-                    <!-- Card 1 -->
-                    <div class="filme-card">
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=SHADOW+HUNTERS')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">Shadow Hunters</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2016</span>
-                                        <span class="classificacao">14+</span>
-                                        <span class="temporadas">3 Temporadas</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="filme-card">
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=WALKING+DEAD')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">The Walking Dead</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2010</span>
-                                        <span class="classificacao">18+</span>
-                                        <span class="temporadas">11 Temporadas</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="filme-card">
-                        <div class="novidade-badge">Novidade</div>
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=NOVA+SÉRIE')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">Nova Série</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2023</span>
-                                        <span class="classificacao">16+</span>
-                                        <span class="temporadas">1 Temporada</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="filme-card">
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=BREAKING+BAD')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">Breaking Bad</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2008</span>
-                                        <span class="classificacao">18+</span>
-                                        <span class="temporadas">5 Temporadas</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 5 -->
-                    <div class="filme-card">
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=GAME+OF+THRONES')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">Game of Thrones</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2011</span>
-                                        <span class="classificacao">18+</span>
-                                        <span class="temporadas">8 Temporadas</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 6 -->
-                    <div class="filme-card">
-                        <div class="filme-image" style="background-image: url('https://via.placeholder.com/300x450/333333/FFFFFF?text=THE+OFFICE')">
-                            <div class="filme-overlay">
-                                <div class="filme-info">
-                                    <h3 class="filme-titulo">The Office</h3>
-                                    <div class="filme-meta">
-                                        <span class="ano">2005</span>
-                                        <span class="classificacao">14+</span>
-                                        <span class="temporadas">9 Temporadas</span>
-                                    </div>
-                                    <div class="filme-actions">
-                                        <button class="play-btn">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                <path d="M8 5v14l11-7z"/>
-                                            </svg>
-                                            Assistir
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <button class="carrossel-btn carrossel-next" aria-label="Avançar">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
-                </svg>
-            </button>
-        </div>
+        <!-- Conteúdo dinâmico gerado pelo script.js com imagens do TMDB -->
     </section>
 
-  <script src="script.js"></script>
+  <!-- Modal para configurar TMDB API Key -->
+  <div id="apiKeyModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="apiKeyModalTitle">
+    <div class="modal-content">
+      <h3 id="apiKeyModalTitle">Configurar TMDB API Key</h3>
+      <p>Insira sua TMDB API Key. Ela será salva em <code>localStorage</code>.</p>
+      <input type="text" id="tmdbKeyInput" placeholder="TMDB API Key" autocomplete="off" />
+      <div class="modal-actions">
+        <button id="saveApiKeyBtn" class="modal-primary">Salvar</button>
+        <button id="closeApiKeyBtn" class="modal-secondary">Cancelar</button>
+      </div>
+    </div>
+  </div>
 
+  <!-- Modal de detalhes da capa -->
+  <div id="heroDetailsModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="heroDetailsTitle">
+    <div class="modal-content">
+      <h3 id="heroDetailsTitle">Detalhes</h3>
+      <p id="heroDetailsBody">Carregando detalhes…</p>
+      <div class="modal-actions">
+        <button id="heroDetailsClose" class="modal-secondary" type="button">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
