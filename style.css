@@ -15,15 +15,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
+  padding: clamp(10px, 2.2vw, 12px) clamp(12px, 3.2vw, 24px);
   background: #1a1a1a;
   width: 100%;
-  max-width: 1200px; /* diminui a largura máxima do header no desktop */
+  max-width: clamp(320px, 96vw, 1200px); /* ajusta automaticamente em todas as telas */
   margin: 0 auto;     /* centraliza o header dentro da página */
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3.5vw, 1.6rem);
   font-weight: 600;
 }
 
@@ -35,7 +35,7 @@ body {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: clamp(8px, 2.5vw, 16px);
 }
 
 @media (max-width: 768px) {
@@ -58,8 +58,8 @@ body {
 .search-bar {
   display: flex;
   align-items: center;
-  width: 50%;
-  max-width: 500px;
+  width: clamp(280px, 50vw, 560px);
+  max-width: 560px;
   padding: 8px 15px;
 
   background: #ffffff14;
@@ -1356,6 +1356,31 @@ body {
 @media (max-width: 768px) {
   .hero-actions { flex-direction: column; align-items: stretch; }
   .hero-btn { width: 100%; justify-content: center; }
+}
+
+/* Layout dos botões da capa em telas muito pequenas */
+@media (max-width: 480px) {
+  .hero-actions {
+    flex-direction: row; /* lado a lado como na referência */
+    align-items: center;
+    gap: 6px;            /* espaçamento mais compacto */
+    width: 100%;
+  }
+  .hero-btn {
+    flex: 1 1 0;            /* larguras equilibradas */
+    height: 48px;           /* área de toque ampliada */
+    padding: 0 14px;        /* mantém texto visível sem exagero */
+    justify-content: center;
+    font-size: 1rem;        /* legibilidade melhor em telas pequenas */
+  }
+  .hero-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+  .hero-btn.info {
+    background: rgba(109,109,110,0.50); /* contraste um pouco menor, mais suave */
+    border-color: rgba(255,255,255,0.35); /* borda mais evidente */
+  }
 }
 
 @media (max-width: 992px) {
